@@ -34,8 +34,6 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<LoginResponse> signUp (@RequestBody LoginRequest request){
-        System.out.println("Username: " + request.getUsername());
-        System.out.println("Password: " + request.getPassword());
         log.info("Signup request: {} {}", request.getUsername(), request.getPassword());
         return signUpService.execute(request);
     }

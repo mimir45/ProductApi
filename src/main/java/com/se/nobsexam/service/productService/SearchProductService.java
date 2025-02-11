@@ -23,15 +23,14 @@ public class SearchProductService implements Query<ProductSearchRequest, List<Pr
 
     @Override
     public ResponseEntity<List<ProductDto>> execute(ProductSearchRequest input) {
+        String sortBy="";
         if(input.getSortBy() == null || input.getSortBy().isEmpty()) {
-            String    sortBy = "id";
-
-
+             sortBy = "id";
         }
 
         String search = input.getSearch();
         String category = input.getCategory();
-        String sortBy = input.getSortBy();
+
 
        List<Product> products = productRepository.searchProduct(search,category,sortBy);
        List<ProductDto> productDtos = products.stream().map(ProductDto::new).limit(10).toList();

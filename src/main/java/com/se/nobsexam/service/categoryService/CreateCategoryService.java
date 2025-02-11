@@ -1,6 +1,7 @@
 package com.se.nobsexam.service.categoryService;
 
 import com.se.nobsexam.dto.CategoryDto;
+import com.se.nobsexam.exception.CategoryAlreadyExists;
 import com.se.nobsexam.model.Category;
 import com.se.nobsexam.repository.CategoryRepository;
 import com.se.nobsexam.service.Command;
@@ -32,6 +33,6 @@ public class CreateCategoryService implements Command<Category,CategoryDto>{
             log.info(category.toString());
             return ResponseEntity.ok(new CategoryDto(category));
         }
-        throw new RuntimeException("Category Already Exists");
+       throw new CategoryAlreadyExists();
     }
 }

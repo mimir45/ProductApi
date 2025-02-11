@@ -7,6 +7,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Objects;
+
 
 @Slf4j
 public class ProfanityValidator {
@@ -18,6 +20,6 @@ public class ProfanityValidator {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<ApiResponse> response = restTemplate.exchange("https://api.api-ninjas.com/v1/profanityfilter?text="+name, HttpMethod.GET, entity, ApiResponse.class);
         log.info("Profanity filter response: {}", response.getBody());
-        return response.getBody().isHas_profanity();
+        return  Objects.requireNonNull(response.getBody()).isHas_profanity();
     }
 }

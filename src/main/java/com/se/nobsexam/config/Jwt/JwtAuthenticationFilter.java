@@ -20,7 +20,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             token = authHeader.substring(7);
         }
-        if (token != null&&JwtUtil.isTokenValid(token)) {
+        if (token != null && JwtUtil.isTokenValid(token)) {
             Authentication authentication= new UsernamePasswordAuthenticationToken(
                     JwtUtil.parseToken(token).getSubject(),
                     null,
